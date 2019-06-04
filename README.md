@@ -1,5 +1,7 @@
 # CompostCli
 
+Hello! This is a CLI program meant to help you determine which food-scrap items are eligible for compost, which are not, and where the drop-off locations are located in the five boroughs of New York City. Composting is an easy way to reduce waste, however, living in a city it can be a difficult practice to navigate (you can't just throw your food scraps in your likely non-existent backyard after all). As such, the purpose of this program is to increase the simplicity and accessibility of urban composting in New York City.
+
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/compost_cli`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 TODO: Delete this and the text above, and describe your gem
