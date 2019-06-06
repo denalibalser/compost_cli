@@ -1,1 +1,5 @@
 #!/usr/bin/env ruby
+
+require './lib/compost_cli'  #may need to change this later 
+
+CompostCli::CLI.new.call
