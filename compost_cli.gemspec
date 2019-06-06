@@ -8,6 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = CompostCli::VERSION
   spec.authors       = ["'Denali Balser'"]
   spec.email         = ["'denali.balser167@gmail.com'"]
+  spec.add_development_dependency "rspec", "~> 3.2"
 
   spec.summary       = %q{A ruby gem to make composting more accessible in NYC.}
   spec.description   = %q{A ruby gem to view composting drop-off locations in the five boroughs of NYC.}
