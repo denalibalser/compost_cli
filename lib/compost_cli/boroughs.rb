@@ -1,17 +1,7 @@
-class Boroughs 
-  attr_accessor :addresses, :collection_days
+class CompostCli::Boroughs 
   
-  @@all = []
-  
-  def initialize()
-    
-    
-    def initialize(name=nil, url=nil, location=nil, position=nil)
-    @name = name
-    @url = url
-    @location = location
-    @position = position
-    @@all << self
+  def self.all 
+    #should return a bunch of instanes of boroughs 
   end
   
   
