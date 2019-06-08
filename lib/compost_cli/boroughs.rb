@@ -2,7 +2,7 @@ class CompostCli::Boroughs
   attr_accessor :name, :addresses, :url 
   
   def self.all 
-    #should return a bunch of instanes of boroughs 
+    #should return a numbered array of bunch of instanes of boroughs 
   end
   
   
