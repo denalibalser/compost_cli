@@ -10,6 +10,13 @@ class CompostCli::CLI
     address_selection
     go_compost
     @boroughs = CompostCli::Boroughs.all
+    @boroughs.each_with_index(1) do |borough, i|
+      puts "#{i}. #{borough.name}"
+    end 
+    @addresses = CompostCli::Addresses.all 
+    @addresses.each_with_index(1) do |address, i|
+      puts "#{i}. #{address.borough}: #{address.name}"
+    end 
   end
   
   def list_boroughs
@@ -51,16 +58,14 @@ class CompostCli::CLI
     while input != "exit" #starts loop (while input does not equal "exit" stay in the loop:)
     puts "Please enter the number of the compost drop-off address you would like more information on or type list to see the boroughs again or type exit to exit:"
     inputs = gets.strip.downcase 
-    case input 
-     when "1"
-      puts "Day(s) of Week Open: , Hours Open: "
-    # output the days  of week open and hours associated with the  address of the users input
     
-     when "list" #returns to list_boroughs if 'list' is input
+    if input.to > 0 #replaced when statement with this if statement 
+      puts @addresses[input.to_i-1]
+    elsif input == "list"
       list_boroughs
-      
-     else #if user inputs something other than number/list/exit
+    else 
       puts "Invalid Input. Please enter the number of the compost drop-off address you would like more information on or type list to see the boroughs again or type exit to exit:"
+      
     
     end 
    end #ends loop
