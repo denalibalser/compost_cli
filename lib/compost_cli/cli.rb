@@ -9,14 +9,6 @@ class CompostCli::CLI
     select_address
     collection_day
     go_compost
-    @boroughs = CompostCli::Boroughs.all
-    @boroughs.each_with_index(1) do |borough, i|
-      puts "#{i}. #{borough.name}: [@addresses]" #need this to return a list of the addresses associated with the selected borough 
-    end 
-    @addresses = CompostCli::Addresses.all 
-    @addresses.each_with_index(1) do |address, i|
-      puts "#{i}. #{address.borough}: #{address.name}"
-    end 
   end
   
   def list_boroughs
