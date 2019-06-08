@@ -7,7 +7,7 @@ class CompostCli::CLI
     select_boroughs
     list_addresses
     select_address
-    collection_days
+    collection_day
     go_compost
     @boroughs = CompostCli::Boroughs.all
     @boroughs.each_with_index(1) do |borough, i|
@@ -74,20 +74,23 @@ class CompostCli::CLI
         chosen_address = addresses_arr[address_choice-1].name.upcase
         
         puts "Here are the days and hours of operation for #{chosen_address}"
-        collection_days(chosen_address)
+        collection_day(chosen_address)
       else 
         puts "Invalid Input. Please select the number that corresponds with the compost drop-off address you would like more information on or type list to return to the list of boroughs or type exit to exit:"
       end 
     end 
   end 
   
-  def collection_days(chosen_address)
-    #@collection_days =[]
-    collection_days = CompostCli::Collection_days
+  def collection_day(chosen_address)
+    collection_days = CompostCli::Collection_day.new(chosen_address)
+    puts collection_days.address_info
   end 
   
   def go_compost
     puts "Now get out there and start composting New York!"
+    exit
   end 
-  
+ end
 end 
+
+puts CompostCli::CLI.new.start
