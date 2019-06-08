@@ -1,12 +1,24 @@
-class CompostCli::Addresses 
-  attr_accessor :borough, :addresses, :collection_days #may need to add 's' to borough
+#requirements
+
+module CompostCli
+  class Addresses 
+  attr_accessor :hours, :days_of_week, :boroughs, :addresses, :collection_days 
   
-  def self.all 
-    #should return a numbered array of bunch of instanes of addresses (through boroughs?)
+  def initialize(name)
+    @name = name 
   end 
   
-  def borough 
-    #addresses through boroughs 
+  def address_info
+    scrape_collection_info
+    
+    puts "#{@days_of_week}
+          #{@hours}"
   end 
+  
+  def scrape_collection_info
+    doc = Nokogiri::HTML(open(url))
+    
+  end 
+  
   
 end 

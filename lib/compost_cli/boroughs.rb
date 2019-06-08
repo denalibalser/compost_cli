@@ -1,10 +1,20 @@
-class CompostCli::Boroughs 
+require 'nokogiri'
+require 'open-uri'
+#require_relative  'addresses.rb'
+#require_relative 'collection_day.rb'
+
+module CompostCli 
+  class Boroughs 
   attr_accessor :name, :addresses, :url 
   
-  def self.all 
+  def self.list_
+    @name = name 
+  end 
     #should return a numbered array of bunch of instanes of boroughs 
     #scrape data off of https://www.grownyc.org/compost/locations and then return the list of boroughs 
-  end
+    
+
+ 
   
   def self.scrape_boroughs 
     boroughs = []
