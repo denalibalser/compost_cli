@@ -1,6 +1,13 @@
 #our CLI Controller, welcoming the user and dealing with user input
 
-class CompostCli::CLI
+require_relative 'addresses.rb'
+require_relative 'boroughs.rb'
+require_relative 'collection_day.rb'
+require 'readline'
+
+module CompostCli
+
+class CLI
   
   def start 
     list_boroughs 
@@ -42,7 +49,6 @@ class CompostCli::CLI
   end 
   
   def list_addresses(the_borough) 
-    #@addresses = [] (?)
     puts "Please select the number that corresponds with the compost drop-off address you would like more information on or type list to return to the list of boroughs or type exit to exit:"
     addresses_arr = CompostCli::Addresses.list_addresses(the_borough)
     
