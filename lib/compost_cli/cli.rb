@@ -2,13 +2,12 @@
 
 class CompostCli::CLI
   
-  def call 
-    puts "Welcome! Composting is an easy way to reduce waste. However, urban composting can be hard, we're here to help simplify it for New Yorkers!" 
+  def start 
     list_boroughs 
-    borough_selection
+    select_boroughs
     list_addresses
-    address_selection
-    list_collection_days
+    select_address
+    collection_days
     go_compost
     @boroughs = CompostCli::Boroughs.all
     @boroughs.each_with_index(1) do |borough, i|
@@ -21,65 +20,70 @@ class CompostCli::CLI
   end
   
   def list_boroughs
-    #scrape  the boroughs and display as numbered  list ? or just have in the greeting puts 
+    puts "Welcome! Composting is an easy way to reduce waste. However, urban composting can be hard, we're here to help simplify it for New Yorkers!" 
     puts "There are compost drop-off locations in all five boroughs:"
-    puts <<- DOC 
-    1. Bronx 
-    2. Brookyln 
-    3. Manhattan
-    4. Queens 
-    5. Staten Island 
-    DOC 
+    
+    borough_arr = CompostCli::Boroughs.list_borough_names
+    puts  borough_arr.map.with_index{|borough, index|
+      "#{index+1}. #{borough.name}"
+    }
+    select_borough(borough_arr)
   end 
   
-  def borough_selection
+  def select_borough(borough_arr)
     input = nil 
-    while input != "exit"
-    puts "Please enter the number of the borough in which you would like to find a compost drop-off location or type exit to exit:"
-    input = gets.strip.downcase
+    while true #input != "exit"
+    puts "Please select a borough 1 - 5 from which you would like to find a compost drop-off location or type exit to exit:"
+    input = Readline.readline("Select borough ",  true).strip #gets.strip.downcase
     
-    if input > 0 
-      the_borough = @boroughs[input.to_i(-1)]
-      puts "#{i}. #{borough.name}"
-    elsif input == "exit"
-      go_compost
+    go_compost if input.downcase === "exit"
+    input = input.to_i
+    
+    if input > 0 && input < 5  
+      the_borough = borough_arr[input-1].name.strip
+      puts "Here is list of compost drop-off locations for #{the_borough.upcase}:"
+      list_addresses(the_borough)
     else 
       puts "Invalid Input. Please enter the number of the borough in which you would like to find a compost drop-off location or type exit to exit:"
     end 
    end
   end 
   
-  def list_addresses 
+  def list_addresses(the_borough) 
     #@addresses = [] (?)
-    puts "Here is the list of addresses for your borough selection:"
-    #scrape list of addresses for the address here and pushes into @addresses array
-  end 
-  
-  def address_selection
-    input = nil 
-    while input != "exit" #starts loop (while input does not equal "exit" stay in the loop:)
-    puts "Please enter the number of the compost drop-off address you would like more information on or type list to see the boroughs again or type exit to exit:"
-    input = gets.strip.downcase 
+    puts "Please select the number that corresponds with the compost drop-off address you would like more information on or type list to return to the list of boroughs or type exit to exit:"
+    addresses_arr = CompostCli::Addresses.list_addresses(the_borough)
     
-    if input.to > 0 #replaced when statements with this if statement 
-    the_borough = @boroughs[input.to_i(-1)]
-      puts "#{i}. #{borough.name}"
-      the_address = @addresses[input.to_i-1]
-      puts "#{i}. #{address.name}"
-      
-    elsif input == "list"
-      list_boroughs
-    else 
-      puts "Invalid Input. Please enter the number of the compost drop-off address you would like more information on or type list to see the boroughs again or type exit to exit:"
-      
-    end 
-   end #ends loop
+    puts addresses_arr.map.with_index{|address, index|
+      "#{index+1}. #{address.name},  #{address.location}"
+    }
+    select_address(addresses_arr)
   end 
   
-  def list_collection_days
+  def select_address(addresses_arr)
+    input = nil 
+    while input true #!= "exit"  
+      input = Readline.readline("Select address: ", true).strip
+      
+      go_compost if input.downcase === "exit"
+      list_boroughs if input.downcase === "list"
+      
+      address_choice =  input.to_i
+      
+      if address_choice > 0  
+        chosen_address = addresses_arr[address_choice-1].name.upcase
+        
+        puts "Here are the days and hours of operation for #{chosen_address}"
+        collection_days(chosen_address)
+      else 
+        puts "Invalid Input. Please select the number that corresponds with the compost drop-off address you would like more information on or type list to return to the list of boroughs or type exit to exit:"
+      end 
+    end 
+  end 
+  
+  def collection_days(chosen_address)
     #@collection_days =[]
-    puts "Here are the collection days and hours of operation for your address selection:"
-    #scrapes list of collection days and hours for the selected address and pushes into @collection_days array
+    collection_days = CompostCli::Collection_days
   end 
   
   def go_compost
