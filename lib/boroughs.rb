@@ -7,8 +7,8 @@ require 'pry'
 class CompostCli::Boroughs 
   attr_accessor :name, :addresses, :url 
   
-  #have many addresses 
-  #have many collection_days through addresses
+  #has many addresses 
+  #has many collection_days through addresses
   
   def self.list_borough_names
     self.scrape_boroughs

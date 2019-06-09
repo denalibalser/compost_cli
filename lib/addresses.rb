@@ -1,6 +1,9 @@
 #requirements
 
 class CompostCli::Addresses
+  
+  #belongs to a borough  
+  #belongs to collection_day
    
   attr_accessor :hours, :days_of_week, :boroughs, :addresses, :collection_days, :location,  :name 
   
