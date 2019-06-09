@@ -2,14 +2,13 @@ require 'open-uri'
 require 'nokogiri'
 require 'pry'
 
-require "compost_cli/version"
-require "compost_cli/addresses"
-require "compost_cli/boroughs"
-require "compost_cli/cli"
-require "compost_cli/collection_days"
-require "compost_cli/scraper"
+require_relative "./addresses"
+require_relative "./boroughs"
+require_relative "./cli"
+require_relative "./collection_day"
+require_relative "./scraper"
 
-module CompostCli
-  class Error < StandardError; end
+#module CompostCli
+#  class Error < StandardError; end
   # Your code goes here...
-end
+#end

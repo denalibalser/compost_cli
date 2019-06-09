@@ -1,4 +1,4 @@
-class CompostCli::Collection_day
+class CollectionDay
   
   #has many addresses
   #has many boroughs through addresses

@@ -1,12 +1,7 @@
 #our CLI Controller, welcoming the user and dealing with user input
 
-#require_relative 'addresses.rb'
-#require_relative 'boroughs.rb'
-#require_relative 'collection_day.rb'
-#require_relative 'scraper.rb'
 
-
-class CompostCli::CLI
+class CLI
   
   def start 
     list_boroughs 
@@ -21,7 +16,7 @@ class CompostCli::CLI
     puts "Welcome! Composting is an easy way to reduce waste. However, urban composting can be hard, we're here to help simplify it for New Yorkers!" 
     puts "There are compost drop-off locations in all five boroughs:"
     
-    borough_arr = CompostCli::Boroughs.list_borough_names
+    borough_arr = Borough.list_borough_names
     puts  borough_arr.each_with_index(1) do |borough, index|
       "#{index}. #{borough.name}"
     end
@@ -50,7 +45,7 @@ class CompostCli::CLI
   
   def list_addresses(the_borough) 
     puts "Please select the number that corresponds with the compost drop-off address you would like more information on or type 'list' to return to the list of boroughs or type 'exit' to exit:"
-    addresses_arr = CompostCli::Addresses.list_addresses(the_borough)
+    addresses_arr = Address.list_addresses(the_borough)
     
     puts addresses_arr.each_with_index(1) do |address, index|
       "#{index}. #{address.name},  #{address.location}"
@@ -81,7 +76,7 @@ class CompostCli::CLI
   end 
   
   def collection_day(chosen_address)
-    collection_days = CompostCli::Collection_day.new(chosen_address)
+    collection_days = Collection_day.new(chosen_address)
     puts collection_days.address_info
   end 
   
@@ -89,7 +84,5 @@ class CompostCli::CLI
     puts "Now get out there and start composting New York!"
     exit
   end 
- end
-end 
+end
 
-puts CompostCli::CLI.new.start

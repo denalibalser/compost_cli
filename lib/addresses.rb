@@ -1,6 +1,4 @@
-#requirements
-
-class CompostCli::Addresses
+class Address
   
   #belongs to a borough  
   #belongs to collection_day
