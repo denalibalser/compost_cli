@@ -1,8 +1,8 @@
 #requirements
 
-module CompostCli
-  class Addresses 
-  attr_accessor :hours, :days_of_week, :boroughs, :addresses, :collection_days 
+class CompostCli::Addresses
+   
+  attr_accessor :hours, :days_of_week, :boroughs, :addresses, :collection_days, :location,  :name 
   
   def initialize(name)
     @name = name 

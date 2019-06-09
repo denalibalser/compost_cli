@@ -4,9 +4,11 @@ require 'pry'
 #require_relative  'addresses.rb'
 #require_relative 'collection_day.rb'
 
-module CompostCli 
-  class Boroughs 
+class CompostCli::Boroughs 
   attr_accessor :name, :addresses, :url 
+  
+  #have many addresses 
+  #have many collection_days through addresses
   
   def self.list_borough_names
     self.scrape_boroughs
