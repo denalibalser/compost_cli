@@ -76,7 +76,7 @@ class CLI
   end 
   
   def collection_day(chosen_address)
-    collection_days = Collection_day.new(chosen_address)
+    collection_days = CollectionDay.new(chosen_address)
     puts collection_days.address_info
   end 
   
